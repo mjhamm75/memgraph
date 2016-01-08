@@ -1,14 +1,16 @@
 import express from 'express';
-import members from './mock/member.mock';
+import { getMembers } from './routes/member.js';
 
 let PORT = 3000;
 
 let app = express();
 
 app.get('/', (req, res) => {
-	res.json({
-		members: members
-	})
+	getMembers().then(members => {
+		res.json({
+			members
+		})
+	});
 })
 
 app.listen(PORT, () => {

@@ -3,15 +3,15 @@ import { knexInit } from '../config/knex';
 
 let knex = knexInit();
 
-for(let i = 0; i < 1; i++) {
-	var firstName = faker.name.firstName();
-	var lastName = faker.name.lastName();
+for(let index = 0; index < 300; index++) {
+	var firstname = faker.name.firstName();
+	var lastname = faker.name.lastName();
 	
 
 	knex('member').insert({
-		firstName, 
-		lastName
+		firstname, 
+		lastname
 	}).then(res => {
-		console.log(`Inserterd ${i}`)
+		console.log(`Inserted ${res}`)
 	})
 }
