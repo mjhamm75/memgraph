@@ -6,7 +6,8 @@ let PORT = 3000;
 let app = express();
 
 app.get('/', (req, res) => {
-	getMembers().then(members => {
+	getMembers().then(data => {
+		var members = formatMembers(data);
 		res.json({
 			members
 		})
@@ -16,3 +17,18 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
 	console.log(`Listening on port ${PORT}`);
 });
+
+function formatMembers(data) {
+	return data.map(row => {
+		return {
+			firstName: row.firstname,
+			lastName: row.lastname,
+			address: {
+				streetAddress: row.streetaddress,
+				city: row.city,
+				state: row.state,
+				zipcode: row.zipcode
+			}
+		}
+	})
+}
