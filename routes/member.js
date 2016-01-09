@@ -8,3 +8,10 @@ export function getMembers() {
 		.table('member')
 		.innerJoin('address', 'member.id', 'address.member_id');
 }
+
+export function getMember(id) {
+	return knex.select()
+		.table('member')
+		.innerJoin('address', 'member.id', 'address.member_id')
+		.where('member.id', id);
+}

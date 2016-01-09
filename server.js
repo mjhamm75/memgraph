@@ -1,15 +1,24 @@
 import express from 'express';
-import { getMembers } from './routes/member.js';
+import { getMember, getMembers } from './routes/member.js';
 
 let PORT = 3000;
 
 let app = express();
 
-app.get('/', (req, res) => {
+app.get('/members', (req, res) => {
 	getMembers().then(data => {
 		var members = formatMembers(data);
 		res.json({
 			members
+		})
+	});
+})
+
+app.get('/members/:id', (req, res) => {
+	getMember(req.params.id).then(data => {
+		var members = formatMembers(data);
+		res.json({
+			member: members[0]
 		})
 	});
 })
