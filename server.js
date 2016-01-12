@@ -23,6 +23,10 @@ app.get('/members/:id', (req, res) => {
 	});
 })
 
+app.get('/callings', (req, res) => {
+
+})
+
 app.listen(PORT, () => {
 	console.log(`Listening on port ${PORT}`);
 });
